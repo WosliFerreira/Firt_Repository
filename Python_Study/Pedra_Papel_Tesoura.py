@@ -77,7 +77,9 @@ def jogar(i):
         pc = random.choice(opcoes)
         voce = i
 
-        print(voce, pc)
+        if voce == 'Pedra' and pc == 'Pedra':
+            print('Empate')
+
 
     else:
         fim_do_jogo()
