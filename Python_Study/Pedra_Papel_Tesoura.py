@@ -10,9 +10,9 @@ from PIL import Image, ImageTk
 co0 = "#FFFFFF" # White
 co1 = "#333333" # Branca
 co2 = "#fcc058" # Orange
-co3 = "#38576b" # Valor
+co3 = "#fff873" # Yellow
 co4 = "#3292a8" # Blue
-co5 = "#fff873" # Yellow
+co5 = "#38576b" # Valor
 co6 = "#fcc058" # Orange
 co7 = "#e85151" # Red
 co8 = "#34eb3d" # Green
@@ -71,20 +71,68 @@ def jogar(i):
     global pontos_voce
     global pontos_pc
 
-    if rodadas >0:
+    if rodadas > 0:
         print(rodadas)
         opcoes = ['Pedra', 'Papel', 'Tesoura']
         pc = random.choice(opcoes)
         voce = i
 
+        # caso for igual
         if voce == 'Pedra' and pc == 'Pedra':
             print('Empate')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co0
+            app_linha['bg'] = co3
 
+        elif voce == 'Papel' and pc == 'Papel':
+            print('Empate')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co0
+            app_linha['bg'] = co3
+
+        elif voce == 'Tesoura' and pc == 'Tesoura':
+            print('Empate')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co0
+            app_linha['bg'] = co3
+
+        # Movendo para frente
+        if voce == 'Pedra' and pc == 'Papel':
+            print('## PC Ganhou! ##')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co8
+            app_linha['bg'] = co3
+
+        elif voce == 'Pedra' and pc == 'Tesoura':
+            print('## Voce Ganhou! ##')
+            play_1_linha['bg'] = co8
+            play_2_linha['bg'] = co0
+            app_linha['bg'] = co3
+
+        elif voce == 'Papel' and pc == 'Tesoura':
+            print('## PC Ganhou! ##')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co8
+            app_linha['bg'] = co3
+
+        # Movendo para trás
+        elif voce == 'Tesoura' and pc == 'Papel':
+            print('## Voce Ganhou! ##')
+            play_1_linha['bg'] = co8
+            play_2_linha['bg'] = co0
+            app_linha['bg'] = co3
+
+        elif voce == 'Tesoura' and pc == 'Pedra':
+            print('## PC Ganhou! ##')
+            play_1_linha['bg'] = co0
+            play_2_linha['bg'] = co8
+            app_linha['bg'] = co3
 
     else:
         fim_do_jogo()
 
 # Iniciar o jogo
+
 # Configurando frame baixo
 def iniciar_jogo():
     global icon1
@@ -93,22 +141,22 @@ def iniciar_jogo():
     global b_icon_1
     global b_icon_2
     global b_incon_3
-    icon1 = Image.open('Imagens/pedra.jpg')
+    icon1 = Image.open('Exercicios/Imagens/pedra.jpg')
     icon1 = icon1.resize((50,50), Image.Resampling.LANCZOS)
     icon1 = ImageTk.PhotoImage(icon1)
-    b_icon_1 = Button(frame_baixo,command=lambda:jogar('Pedra'), width=50, image=icon1, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
+    b_icon_1 = Button(frame_baixo,command=lambda: jogar('Pedra'), width=50, image=icon1, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
     b_icon_1.place(x=15, y=60)
 
-    icon2 = Image.open('Imagens/papel.jpg')
+    icon2 = Image.open('Exercicios/Imagens/papel.jpg')
     icon2 = icon2.resize((50,50), Image.Resampling.LANCZOS)
     icon2 = ImageTk.PhotoImage(icon2)
-    b_icon_2 = Button(frame_baixo,command=lambda:jogar('Papel'), width=50, image=icon2, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
+    b_icon_2 = Button(frame_baixo,command=lambda: jogar('Papel'), width=50, image=icon2, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
     b_icon_2.place(x=95, y=60)
 
-    icon3 = Image.open('Imagens/tesoura.jpg')
+    icon3 = Image.open('Exercicios/Imagens/tesoura.jpg')
     icon3 = icon3.resize((50,50), Image.Resampling.LANCZOS)
     icon3 = ImageTk.PhotoImage(icon3)
-    b_icon_3 = Button(frame_baixo,command=lambda:jogar('Tesoura'), width=50, image=icon3, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
+    b_icon_3 = Button(frame_baixo,command=lambda: jogar('Tesoura'), width=50, image=icon3, compound=CENTER, bg=co0, fg=co0, font=('Ivy 10 bold'), anchor=CENTER, relief='flat')
     b_icon_3.place(x=170, y=60)
 
 
